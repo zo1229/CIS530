@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Club</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+        }
+
+        .book {
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .debug {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .warn {
+            color: #ff8800;
+        }
+
+        .success {
+            color: #90ee90;
+        }
+
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📚 Book Club</h1>
+    <p>Welcome to the Book Club app. Below is the list of this month's books:</p>
+
+    <!-- DEBUG: shows which controller sent this -->
+    <p class="debug">Loaded by: <span th:text="${controller}">Unknown controller</span></p>
+
+    <!-- Show message if books list is empty -->
+    <div th:if="${#lists.isEmpty(books)}" class="warn">
+        ⚠️ No books found. Check your controller or DAO.
+    </div>
+
+    <!-- Show book list if not empty -->
+    <div th:if="${!#lists.isEmpty(books)}">
+        <p class="success">✅ Books loaded: <span th:text="${#lists.size(books)}">0</span></p>
+
+        <div th:each="book : ${books}" class="book">
+            <h2 th:text="${book.title}">Book Title</h2>
+
+            <p th:if="${!#lists.isEmpty(book.authors)}"
+               th:text="'by ' + ${book.authors[0]}">by Author</p>
+            <p th:if="${#lists.isEmpty(book.authors)}">by Unknown</p>
+
+            <p th:text="${book.description}">Book description</p>
+            <p>Pages: <span th:text="${book.numOfPages}">0</span></p>
+
+            <a th:href="@{/{id}(id=${book.isbn})}">View Details</a>
+        </div>
+    </div>
+
+</body>
+</html>
