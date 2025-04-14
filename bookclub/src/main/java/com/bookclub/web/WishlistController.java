@@ -20,7 +20,7 @@ public class WishlistController {
     public String showWishlist(Model model) {
         MemWishlistDao wishlistDao = new MemWishlistDao();
 
-        List<WishlistItem> wishlist = wishlistDao.list();
+        List<WishlistDao> wishlist = wishlistDao.list();
 
         model.addAttribute("wishlist", wishlist);
 
@@ -29,12 +29,12 @@ public class WishlistController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/new")
     public String wishlistForm(Model model) {
-        model.addAttribute("wishlistItem", new WishlistItem());
+        model.addAttribute("wishlistItem", new WishlistDao());
         return "wishlist/new";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addWishlistItem(@Valid WishlistItem wishlistItem, BindingResult bindingResult) {
+    public String addWishlistItem(@Valid WishlistDao wishlistItem, BindingResult bindingResult) {
         System.out.println(wishlistItem.toString());
 
         System.out.println(bindingResult.getAllErrors());
