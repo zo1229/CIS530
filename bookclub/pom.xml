@@ -61,6 +61,12 @@
 			<version>1.5.2</version>
 		</dependency>
 
+		<!-- Json path library -->
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+
 		<!-- Spring devtools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,6 +75,7 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Spring Boot test framework -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
