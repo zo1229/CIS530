@@ -1,47 +1,73 @@
-package main.java.com.bookclub.model;
+package com.bookclub.model;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class WishlistItem {
+@Document(collection = "wishlist")
+public class WishlistItem
+{
+    @Id
+    private String id;
 
-    @NotNull(message = "isbn is a required field.")
-    @NotEmpty(message = "isbn is a required field.")
+    @NotNull
+    @NotEmpty(message = "ISBN is a required field.")
     private String isbn;
 
-    @NotNull(message = "title is a required field.")
-    @NotEmpty(message = "title is a required field.")
+    @NotNull
+    @NotEmpty(message = "Title is a required field.")
     private String title;
 
-    // Default constructor
+    private String username;
+
     public WishlistItem() {}
 
-    // Parameterized constructor
     public WishlistItem(String isbn, String title) {
         this.isbn = isbn;
         this.title = title;
     }
 
-    // Getters and Setters
-    public String getIsbn() {
-        return isbn;
+    public WishlistItem(String isbn, String title, String username) {
+        this.isbn = isbn;
+        this.title = title;
+        this.username = username;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    public String getTitle() {
-        return title;
+    public String getIsbn() {
+        return isbn;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    // toString method
+    public String getTitle() {
+        return title;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
     @Override
     public String toString() {
-        return "WishlistItem{isbn=" + isbn + ", title=" + title + "}";
+        return String.format("WishlistItem{id=%s, isbn=%s, title=%s, username=%s}", id, isbn, title, username);
     }
 }

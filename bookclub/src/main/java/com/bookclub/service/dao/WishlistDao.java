@@ -1,4 +1,4 @@
-package main.java.com.bookclub.service.dao;
+package com.bookclub.service.dao;
 
 import com.bookclub.model.WishlistItem;
 import com.bookclub.service.GenericCrudDao;
